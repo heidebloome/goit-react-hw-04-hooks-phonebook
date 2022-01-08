@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Fragment } from 'react';
+import shortid from 'shortid';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Section from './components/Section/Section';
+import Form from './components/Form/Form';
+import ContactList from './components/ContactList/ContactList';
+
+class App extends Component {
+  state = {
+    contacts: [],
+    name: '',
+  };
+
+  formSubmitHandler = value => {
+    this.setState(prevState => {
+      const idNum = shortid.generate();
+      return { contacts: [...prevState.contacts, { name: value, id: idNum }] };
+    });
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <Section text="Phonebook">
+          <Form onSubmit={this.formSubmitHandler} />
+        </Section>
+        <Section text="Contacts">
+          <ContactList list={this.state.contacts} />
+        </Section>
+      </Fragment>
+    );
+  }
 }
 
 export default App;
