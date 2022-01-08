@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
+import { FormEl, Button } from './Form.styled';
 
 class Form extends Component {
   state = {
     name: '',
+    number: '',
   };
 
   nameChangeHandler = event => {
-    this.setState({ name: event.target.value });
+    const option = event.target.name;
+    this.setState({ [option]: event.target.value });
   };
 
   submitHandler = event => {
     event.preventDefault();
-    this.props.onSubmit(this.state.name);
+    this.props.onSubmit(this.state.name, this.state.number);
     this.reset();
   };
 
   reset = () => {
-    this.setState({ name: '' });
+    this.setState({ name: '', number: '' });
   };
 
   render() {
     return (
-      <form onSubmit={this.submitHandler}>
+      <FormEl onSubmit={this.submitHandler}>
         <label>
           Name
           <input
@@ -34,8 +37,20 @@ class Form extends Component {
             onChange={this.nameChangeHandler}
           />
         </label>
-        <button type="submit">Add contact</button>
-      </form>
+        <label>
+          Number
+          <input
+            type="tel"
+            name="number"
+            value={this.state.number}
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            onChange={this.nameChangeHandler}
+          />
+        </label>
+        <Button type="submit">Add contact</Button>
+      </FormEl>
     );
   }
 }
