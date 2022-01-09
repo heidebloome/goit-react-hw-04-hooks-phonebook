@@ -3,15 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { ThemeProvider } from 'styled-components';
-
-const theme = {
-  colors: {
-    white: 'white',
-    buttonBackgroundColor: '#096dd9',
-    buttonHoverBackgroundColor: '#1890ff',
-  },
-  spacing: value => `${4 * value}px`,
-};
+import { theme } from './constants/theme';
 
 ReactDOM.render(
   <React.StrictMode>
