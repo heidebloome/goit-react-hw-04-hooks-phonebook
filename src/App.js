@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import shortid from 'shortid';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -35,24 +35,32 @@ class App extends Component {
   visibleContacts = () => {
     const { filter, contacts } = this.state;
     const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter),
+    );
+  };
 
-    return contacts.filter(contact => {
-      return contact.name.toLowerCase().includes(normalizedFilter);
-    });
+  contactDeleteHandler = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
+    }));
   };
 
   render() {
     const { filter } = this.state;
 
     return (
-      <Fragment>
+      <>
         <Title>Phonebook</Title>
         <ContactForm onSubmit={this.formSubmitHandler} />
         <Title mt={7}>Contacts</Title>
         <Filter value={filter} onChange={this.filterChangeHandler} />
-        <ContactList list={this.visibleContacts()} />
+        <ContactList
+          list={this.visibleContacts()}
+          onContactDelete={this.contactDeleteHandler}
+        />
         <Toaster />
-      </Fragment>
+      </>
     );
   }
 }
