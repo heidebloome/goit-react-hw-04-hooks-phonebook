@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import shortid from 'shortid';
+import toast, { Toaster } from 'react-hot-toast';
 
 import INITIAL_STATE from './data/initial-state.json';
 import { Title } from './components/Title/Title.styled';
@@ -14,6 +15,13 @@ class App extends Component {
   };
 
   formSubmitHandler = (name, number) => {
+    const { contacts } = this.state;
+
+    if (contacts.some(contact => contact.name === name)) {
+      toast.error(`${name} is already in contacts!`);
+      return;
+    }
+
     this.setState(prevState => {
       const id = shortid.generate();
       return { contacts: [...prevState.contacts, { id, name, number }] };
@@ -42,7 +50,8 @@ class App extends Component {
         <ContactForm onSubmit={this.formSubmitHandler} />
         <Title mt={7}>Contacts</Title>
         <Filter value={filter} onChange={this.filterChangeHandler} />
-        <ContactList list={this.visibleContacts()} />
+        <ContactList list={this.state.contacts} />
+        <Toaster />
       </Fragment>
     );
   }
