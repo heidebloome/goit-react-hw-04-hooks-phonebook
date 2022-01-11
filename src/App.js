@@ -17,7 +17,11 @@ class App extends Component {
   formSubmitHandler = (name, number) => {
     const { contacts } = this.state;
 
-    if (contacts.some(contact => contact.name === name)) {
+    if (
+      contacts.some(
+        contact => contact.name.toLowerCase() === name.toLowerCase(),
+      )
+    ) {
       toast.error(`${name} is already in contacts!`);
       return;
     }
