@@ -14,6 +14,18 @@ class App extends Component {
     filter: '',
   };
 
+  componentDidUpdate() {
+    localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  }
+
+  componentDidMount() {
+    const data = JSON.parse(localStorage.getItem('contacts'));
+
+    if (data) {
+      this.setState({ contacts: data });
+    }
+  }
+
   formSubmitHandler = (name, number) => {
     const { contacts } = this.state;
 
@@ -30,6 +42,8 @@ class App extends Component {
       const id = shortid.generate();
       return { contacts: [...prevState.contacts, { id, name, number }] };
     });
+
+    toast.success(`${name} was added to your contacts!`);
   };
 
   filterChangeHandler = e => {
@@ -44,10 +58,12 @@ class App extends Component {
     );
   };
 
-  contactDeleteHandler = id => {
+  contactDeleteHandler = (id, name) => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
+
+    toast.error(`${name} was deleted from your contacts!`);
   };
 
   render() {

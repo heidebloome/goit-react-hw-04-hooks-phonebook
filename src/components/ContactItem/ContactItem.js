@@ -11,7 +11,7 @@ const ContactItem = ({ id, name, number, onContactDelete }) => {
         <Text fwb>{name}</Text>
         <Text>{number}</Text>
       </Wrapper>
-      <Button onClick={() => onContactDelete(id)}>Delete</Button>
+      <Button onClick={() => onContactDelete(id, name)}>Delete</Button>
     </Item>
   );
 };

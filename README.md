@@ -6,6 +6,7 @@ state, Styled Components.
 - add new contacts
 - filter by name
 - delete contacts
+- saving contacts to local storage
 
 This project was bootstrapped with
 [Create React App](https://github.com/facebook/create-react-app).
