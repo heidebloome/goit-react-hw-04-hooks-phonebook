@@ -8,6 +8,60 @@ import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
 import Filter from './components/Filter/Filter';
 
+// const App2 = () => {
+//   const [contacts, setContacts] = useState([...INITIAL_STATE]);
+//   const [filter, setFilter] = useState('');
+
+//   const formSubmitHandler = (name, number) => {
+//     if (
+//       contacts.some(
+//         contact => contact.name.toLowerCase() === name.toLowerCase(),
+//       )
+//     ) {
+//       toast.error(`${name} is already in contacts!`);
+//       return;
+//     }
+
+//     setContacts(prevState => {
+//       const id = shortid.generate();
+//       return [...prevState, { id, name, number }];
+//     });
+
+//     toast.success(`${name} was added to your contacts!`);
+//   };
+
+//   const filterChangeHandler = e => {
+//     setFilter(e.target.value);
+//   };
+
+//   const visibleContacts = () => {
+//     const normalizedFilter = filter.toLowerCase();
+//     return contacts.filter(contact =>
+//       contact.name.toLowerCase().includes(normalizedFilter),
+//     );
+//   };
+
+//   const contactDeleteHandler = (id, name) => {
+//     setContacts(prevState => prevState.contacts.filter(contact => contact.id !== id));
+
+//     toast.error(`${name} was deleted from your contacts!`);
+//   };
+
+//   return (
+//       <>
+//         <Title>Phonebook</Title>
+//         <ContactForm onSubmit={formSubmitHandler} />
+//         <Title mt={7}>Contacts</Title>
+//         <Filter value={filter} onChange={filterChangeHandler} />
+//         <ContactList
+//           list={visibleContacts()}
+//           onContactDelete={contactDeleteHandler}
+//         />
+//         <Toaster />
+//       </>
+//   )
+// }
+
 class App extends Component {
   state = {
     contacts: [...INITIAL_STATE],
