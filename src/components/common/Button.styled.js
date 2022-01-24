@@ -4,9 +4,9 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 150px;
   height: 35px;
-  margin-top: 5px;
 
   font-size: 15px;
   font-weight: bold;
@@ -32,5 +32,3 @@ export const Button = styled.button`
     transform: scale(0.9);
   }
 `;
-
-// export default Button;

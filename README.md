@@ -1,11 +1,11 @@
 # Phonebook App
 
-This app is a homework at GoIT school. There were used Class Components with
-state, Styled Components.
+This app is a homework at GoIT school. There were used functional components
+with hooks, Styled Components.
 
-- add new contacts
+- adding new contacts
 - filter by name
-- delete contacts
+- deleting contacts
 - saving contacts to local storage
 
 This project was bootstrapped with
